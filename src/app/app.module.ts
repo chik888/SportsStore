@@ -1,0 +1,18 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { StoreModule } from "./store/store.module";
+// import { FormsModule } from '@angular/forms';
+// import { HttpModule } from '@angular/http';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, StoreModule
+    // ,FormsModule,
+    // HttpModule
+  ],
+  // providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
