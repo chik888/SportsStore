@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Product } from '../model/product.model';
 import { ProductRepository } from '../model/product.repository';
+import { Cart } from '../model/cart.model';
+import { Router } from "@angular/router";
+
+
 @Component({
     selector: 'store',
     moduleId: module.id,
@@ -10,7 +14,11 @@ export class StoreComponent {
     public selectedCategory = null;
     public productsPerPage = 4;
     public selectedPage = 1;
-    constructor(private repository: ProductRepository) { }
+    public countCurrentCategore = 0;
+
+    constructor(private repository: ProductRepository, private cart: Cart, private router: Router) {
+        this.countCurrentCategore = this.repository.getProducts(null).length;
+    }
     get products(): Product[] {
         let pageIndex = (this.selectedPage - 1) * this.productsPerPage;
         return this.repository.getProducts(this.selectedCategory)
@@ -21,9 +29,20 @@ export class StoreComponent {
     }
     changeCategory(newCategory?: string) {
         this.selectedCategory = newCategory;
+        this.countCurrentCategore = this.repository.getProducts(this.selectedCategory).length;
+        this.selectedPage = 1;
     }
     changePage(newPage: number) {
         this.selectedPage = newPage;
+    }
+
+    changePageUpDown(diff: number) {
+        if (diff == 1) { 
+            if (this.selectedPage < this.pageCount) this.selectedPage += 1; 
+        }
+        else { 
+         if (this.selectedPage > 1) this.selectedPage -= 1; 
+        }
     }
     changePageSize(newSize: number) {
         this.productsPerPage = Number(newSize);
@@ -31,11 +50,16 @@ export class StoreComponent {
     }
     get pageCount(): number {
         return Math.ceil(this.repository
-        .getProducts(this.selectedCategory).length / this.productsPerPage);
-        }
-    get pageNumbers(): number[] {
-        return Array(Math.ceil(this.repository
-            .getProducts(this.selectedCategory).length / this.productsPerPage))
-            .fill(0).map((x, i) => i + 1);
+            .getProducts(this.selectedCategory).length / this.productsPerPage);
     }
+
+    addProductToCart(product: Product) {
+        this.cart.addLine(product);
+        this.router.navigateByUrl("/cart");
+    }
+    // get pageNumbers(): number[] {
+    //     return Array(Math.ceil(this.repository
+    //         .getProducts(this.selectedCategory).length / this.productsPerPage))
+    //         .fill(0).map((x, i) => i + 1);
+    // }
 }

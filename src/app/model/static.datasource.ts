@@ -20,6 +20,15 @@ export class StaticDataSource {
         new Product(13, "Product 13", "Category 3", "Product 13 (Category 3)", 100),
         new Product(14, "Product 14", "Category 3", "Product 14 (Category 3)", 100),
         new Product(15, "Product 15", "Category 3", "Product 15 (Category 3)", 100),
+        new Product(16, "Product 10", "Category 4", "Product 10 (Category 2)", 100),
+        new Product(17, "Product 11", "Category 4", "Product 11 (Category 3)", 100),
+        new Product(18, "Product 12", "Category 4", "Product 12 (Category 3)", 100),
+        new Product(19, "Product 13", "Category 4", "Product 13 (Category 3)", 100),
+        new Product(20, "Product 14", "Category 4", "Product 14 (Category 3)", 100),
+        new Product(21, "Product 15", "Category 4", "Product 15 (Category 3)", 100),
+        new Product(22, "Product 14", "Category 4", "Product 14 (Category 3)", 100),
+        new Product(23, "Product 15", "Category 4", "Product 15 (Category 3)", 100),
+        new Product(24, "Product 15", "Category 4", "Product 15 (Category 3)", 100)
     ];
     getProducts(): Observable<Product[]> {
         return Observable.from([this.products]);
