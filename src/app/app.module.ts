@@ -17,7 +17,7 @@ import { StoreFirstGuard } from './storeFirst.guard';
     RouterModule.forRoot([
       { path: "store", component: StoreComponent, canActivate: [StoreFirstGuard] },
       { path: "cart", component: CartDetailComponent, canActivate: [StoreFirstGuard]  },
-      { path: "store", component: CheckoutComponent, canActivate: [StoreFirstGuard]  },
+      { path: "checkout", component: CheckoutComponent, canActivate: [StoreFirstGuard]  },
       { path: "**", redirectTo: "/store" }
     ])
     // ,FormsModule,
