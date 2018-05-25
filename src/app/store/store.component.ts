@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../model/product.model';
 import { ProductRepository } from '../model/product.repository';
 import { Cart } from '../model/cart.model';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -37,11 +37,14 @@ export class StoreComponent {
     }
 
     changePageUpDown(diff: number) {
-        if (diff == 1) { 
-            if (this.selectedPage < this.pageCount) this.selectedPage += 1; 
-        }
-        else { 
-         if (this.selectedPage > 1) this.selectedPage -= 1; 
+        if (diff == 1) {
+            if (this.selectedPage < this.pageCount) {
+                this.selectedPage += 1;
+            }
+        } else {
+            if (this.selectedPage > 1) {
+                this.selectedPage -= 1;
+            }
         }
     }
     changePageSize(newSize: number) {
@@ -55,7 +58,7 @@ export class StoreComponent {
 
     addProductToCart(product: Product) {
         this.cart.addLine(product);
-        this.router.navigateByUrl("/cart");
+        this.router.navigateByUrl('/cart');
     }
     // get pageNumbers(): number[] {
     //     return Array(Math.ceil(this.repository
